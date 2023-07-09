@@ -9,7 +9,7 @@
   "scripts": {
     "build": "unbuild"
   },
-  "keywords": [],
+  "keywords": ["cli"],
   "author": "Liu Xian",
   "files": [
     "index.js",
