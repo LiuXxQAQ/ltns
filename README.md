@@ -1,5 +1,5 @@
 # ltns
-> A personal CLI inspired by [`vite-create`](https://github.com/vitejs/vite/tree/main/packages/create-vite)
+> A personal CLI inspired by [vite-create](https://github.com/vitejs/vite/tree/main/packages/create-vite)
 
 ## start
 
