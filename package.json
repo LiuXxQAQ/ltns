@@ -1,0 +1,32 @@
+{
+  "name": "ltns",
+  "version": "1.0.0",
+  "description": "A personal CLI",
+  "type": "module",
+  "bin": {
+    "ltns": "index.js"
+  },
+  "scripts": {
+    "build": "unbuild"
+  },
+  "keywords": [],
+  "author": "Liu Xian",
+  "files": [
+    "index.js",
+    "template-*",
+    "dist",
+    "package.json"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^20.4.0",
+    "@types/prompts": "^2.4.4",
+    "kolorist": "^1.6.0",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2",
+    "tslib": "^2.4.1",
+    "typescript": "^5.1.6",
+    "unbuild": "^1.2.1"
+  }
+}
