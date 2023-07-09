@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import minimist from 'minimist'
-import { cyan, green, red, yellow } from 'kolorist'
+import { cyan, green, yellow } from 'kolorist'
 import prompts from 'prompts'
 import { fileURLToPath } from 'node:url'
 
@@ -134,8 +134,6 @@ async function run() {
 
   const targetTemplate = template || argTemplate
   const templateDir = getPath(`template-${targetTemplate}`)
-
-  console.log(templateDir)
 
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file)
