@@ -5,7 +5,7 @@
 
 install
 ```bash
-$ npm install
+$ npm install ltns
 ```
 usage
 ```bash
