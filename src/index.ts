@@ -23,7 +23,7 @@ type Template = {
 const templates: Template[] = [
   {
     name: 'basic',
-    detail: 'Basic (Gulp, Scss)',
+    detail: 'Basic (Vite, Scss)',
     color: green
   },
   {
