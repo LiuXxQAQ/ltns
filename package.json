@@ -7,9 +7,12 @@
     "ltns": "index.js"
   },
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "release": "bumpp"
   },
-  "keywords": ["cli"],
+  "keywords": [
+    "cli"
+  ],
   "author": "Liu Xian",
   "files": [
     "index.js",
@@ -22,6 +25,7 @@
     "@types/minimist": "^1.2.2",
     "@types/node": "^20.4.0",
     "@types/prompts": "^2.4.4",
+    "bumpp": "^9.1.1",
     "kolorist": "^1.6.0",
     "minimist": "^1.2.8",
     "prompts": "^2.4.2",

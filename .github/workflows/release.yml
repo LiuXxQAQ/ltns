@@ -5,7 +5,7 @@ name: Node.js Package
 
 on:
   push:
-    tags: 
+    tags:
       - 'v*'
 
 jobs:
@@ -17,22 +17,22 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          
-      - name: Setup pnpm 
+
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
-        with: 
+        with:
           version: latest
-          
+
       - name: Install Packages
         run: pnpm i
-        
+
       - name: Bulid
         run: pnpm run build
-        
+
       - name: Publish
         run: pnpm publish --access public --no-git-checks
-        env: 
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        
-      
+
+
