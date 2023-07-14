@@ -135,6 +135,8 @@ async function run() {
   const targetTemplate = template || argTemplate
   const templateDir = getPath(`template-${targetTemplate}`)
 
+  console.log(templateDir)
+
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file)
     if (content) {
@@ -207,7 +209,7 @@ function copyDir(srcDir: string, destDir: string) {
 function getPath(file: string) {
   return path.resolve(
     fileURLToPath(import.meta.url),
-    '../../',
+    '../..',
     file
   )
 }
