@@ -19,9 +19,9 @@ $ ltns projectName --template vue
 ```
 
 template presets include:
-- `basic (gulp + scss)`
+- `basic (Vite + scss)`
 - `vue (Vite + Vue + Typescipt)`
-- `angular (Angular15 starter)`
+- `angular (Angular16 starter)`
 
 ## License
 
