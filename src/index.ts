@@ -1,22 +1,21 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 import minimist from 'minimist'
 import { cyan, green, yellow } from 'kolorist'
 import prompts from 'prompts'
-import { fileURLToPath } from 'node:url'
 
 const argv = minimist<{
-  t?: string,
+  t?: string
   template?: string
 }>(process.argv.slice(2))
 
-const cwd = process.cwd();
-
 type ColorFunc = (str: string | number) => string
 
-type Template = {
+interface Template {
   name: string
-  detail: string,
+  detail: string
   color: ColorFunc
 }
 
@@ -24,28 +23,27 @@ const templates: Template[] = [
   {
     name: 'basic',
     detail: 'Basic (Vite, Scss)',
-    color: green
+    color: green,
   },
   {
     name: 'vue',
     detail: 'Vue (Vite, TypeScript)',
-    color: cyan
+    color: cyan,
   },
   {
     name: 'angular',
     detail: 'Angular',
-    color: yellow
-  }
+    color: yellow,
+  },
 ]
 
 const defaultTargetDir = 'project'
 
-const TEMPLATES = templates.map((tempate) => tempate.name)
+const TEMPLATES = templates.map(tempate => tempate.name)
 
 const renameFiles: Record<string, string | undefined> = {
   _gitignore: '.gitignore',
 }
-
 
 async function run() {
   if (
@@ -53,6 +51,7 @@ async function run() {
   ) {
     const pkgPath = getPath('package.json')
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
+
     console.log(pkg.version)
 
     process.exit(0)
@@ -63,7 +62,7 @@ async function run() {
 
   let targetDir = argTargetDir || defaultTargetDir
 
-  let result: prompts.Answers<"projectName" | "overwrite" | "overwriteCheck" | "template">
+  let result: prompts.Answers<'projectName' | 'overwrite' | 'overwriteCheck' | 'template'>
 
   try {
     result = await prompts(
@@ -74,7 +73,7 @@ async function run() {
           message: 'Project name:',
           onState: (state) => {
             targetDir = formatTargetDir(state.value) || defaultTargetDir
-          }
+          },
         },
         {
           type: () =>
@@ -83,16 +82,16 @@ async function run() {
           initial: true,
           message: `Target directory ${targetDir} is not empty. Do you want to overwrite it?`,
           inactive: 'no',
-          active: 'yes'
+          active: 'yes',
         },
         {
           type: (_, { overwrite }: { overwrite: boolean }) => {
-            if (overwrite === false) {
+            if (overwrite === false)
               throw new Error('😑 Operation canceled')
-            }
+
             return null
           },
-          name: 'overwriteCheck'
+          name: 'overwriteCheck',
         },
         {
           type: argTemplate && TEMPLATES.includes(argTemplate) ? null : 'select',
@@ -105,19 +104,19 @@ async function run() {
           choices: templates.map((template) => {
             return {
               title: template.color(template.detail),
-              value: template.name
+              value: template.name,
             }
-          })
-        }
+          }),
+        },
       ],
       {
         onCancel: () => {
           throw new Error('😑 Operation canceled')
-        }
-      }
+        },
+      },
     )
-
-  } catch(error: any) {
+  }
+  catch (error: any) {
     console.log(error.message)
     return
   }
@@ -126,31 +125,28 @@ async function run() {
 
   const root = path.join(process.cwd(), targetDir)
 
-  if (overwrite) {
+  if (overwrite)
     emptyDir(root)
-  } else if (!fs.existsSync(root)) {
+  else if (!fs.existsSync(root))
     fs.mkdirSync(root)
-  }
 
   const targetTemplate = template || argTemplate
   const templateDir = getPath(`template-${targetTemplate}`)
 
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file)
-    if (content) {
+    if (content)
       fs.writeFileSync(targetPath, content)
-    } else {
+    else
       copy(path.join(templateDir, file), targetPath)
-    }
   }
 
   const files = fs.readdirSync(templateDir)
-  for (const file of files.filter((f) => f !== 'package.json')) {
+  for (const file of files.filter(f => f !== 'package.json'))
     write(file)
-  }
 
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, 'package.json'), 'utf-8')
+    fs.readFileSync(path.join(templateDir, 'package.json'), 'utf-8'),
   )
 
   pkg.name = targetDir
@@ -165,7 +161,7 @@ async function run() {
 
 function isEmpty(dir: string) {
   const files = fs.readdirSync(dir)
-  return files.length === 0;
+  return files.length === 0
 }
 
 // not
@@ -176,23 +172,20 @@ function formatTargetDir(targetDir: string | undefined) {
 }
 
 function emptyDir(dir: string) {
-  if (!fs.existsSync(dir)) {
+  if (!fs.existsSync(dir))
     return
-  }
 
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
+  const files = fs.readdirSync(dir)
+  for (const file of files)
     fs.rmSync(path.join(dir, file), { recursive: true })
-  }
 }
 
 function copy(src: string, dest: string) {
   const stat = fs.statSync(src)
-  if (stat.isDirectory()) {
+  if (stat.isDirectory())
     copyDir(src, dest)
-  } else {
-    fs.copyFileSync(src, dest);
-  }
+  else
+    fs.copyFileSync(src, dest)
 }
 
 function copyDir(srcDir: string, destDir: string) {
@@ -208,10 +201,10 @@ function getPath(file: string) {
   return path.resolve(
     fileURLToPath(import.meta.url),
     '../..',
-    file
+    file,
   )
 }
 
-run().catch(e => {
+run().catch((e) => {
   console.log(e)
-});
+})

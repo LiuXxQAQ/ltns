@@ -2,10 +2,10 @@ import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   entries: [
-    './src/index'
+    './src/index',
   ],
   clean: true,
   rollup: {
-    inlineDependencies: true
+    inlineDependencies: true,
   },
 })
