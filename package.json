@@ -1,31 +1,35 @@
 {
   "name": "ltns",
-  "version": "1.0.8",
-  "description": "A personal CLI",
   "type": "module",
-  "bin": {
-    "ltns": "index.js"
-  },
-  "scripts": {
-    "build": "unbuild",
-    "release": "bumpp"
-  },
+  "version": "1.0.9",
+  "description": "A personal CLI",
+  "author": "Liu Xian",
+  "license": "MIT",
   "keywords": [
     "cli"
   ],
-  "author": "Liu Xian",
+  "bin": {
+    "ltns": "index.js"
+  },
   "files": [
-    "index.js",
-    "template-*",
     "dist",
-    "package.json"
+    "index.js",
+    "package.json",
+    "template-*"
   ],
-  "license": "MIT",
+  "scripts": {
+    "build": "unbuild",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "bumpp"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.2.2",
     "@types/minimist": "^1.2.2",
     "@types/node": "^20.4.0",
     "@types/prompts": "^2.4.4",
     "bumpp": "^9.1.1",
+    "eslint": "^8.55.0",
     "kolorist": "^1.6.0",
     "minimist": "^1.2.8",
     "prompts": "^2.4.2",
