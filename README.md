@@ -12,7 +12,7 @@ $ pnpm add ltns -g
 
 How to use
 ```
-Usage: ltns <project name>[not requried] [options]
+Usage: ltns <project name> [options]
 
 Options:
   -t, --template  Specify a template that you want.

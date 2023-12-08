@@ -12,7 +12,7 @@ import type { Template } from './types'
 
 const argv = yargs(hideBin(process.argv))
   .scriptName('ltns')
-  .usage('Usage: $0 <project name>[not requried] [options]')
+  .usage('Usage: $0 [project name] [options]')
   .options({
     template: {
       type: 'string',
