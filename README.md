@@ -3,14 +3,14 @@
 
 ## Start
 
-install
+Install
 ```bash
 $ npm install ltns -g
 or
 $ pnpm add ltns -g
 ```
 
-usage
+How to use
 ```
 Usage: ltns <project name>[not requried] [options]
 
@@ -27,7 +27,7 @@ Examples:
   ltns MyProject -t vue         Use alias.
 ```
 
-template presets include:
+Template presets include:
 - `TypeScript (TypeScript Starter)`
 - `Vue (Vite + Vue + Typescipt)`
 - `Angular (Angular 17 starter)`
