@@ -5,23 +5,32 @@
 
 install
 ```bash
-$ npm install ltns
+$ npm install ltns -g
+or
+$ pnpm add ltns -g
 ```
+
 usage
-```bash
-$ ltns
-# or
-$ ltns -t vue
-# or
-$ ltns projectName -t vue
-# or
-$ ltns projectName --template vue
+```
+Usage: ltns <project name>[not requried] [options]
+
+Options:
+  -t, --template  Specify a template that you want.
+                                      [string] [choices: "ts", "vue", "angular"]
+  -h, --help      Show a help message for ltns.                        [boolean]
+  -v, --version   Outputs ltns version.                                [boolean]
+
+Examples:
+  ltns                          Basic usage.
+  ltns MyProject                Specify a project name.
+  ltns MyProject -template vue  Specify a template.
+  ltns MyProject -t vue         Use alias.
 ```
 
 template presets include:
 - `TypeScript (TypeScript Starter)`
 - `Vue (Vite + Vue + Typescipt)`
-- `Angular (Angular17 starter)`
+- `Angular (Angular 17 starter)`
 
 ## License
 
