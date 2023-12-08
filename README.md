@@ -19,9 +19,9 @@ $ ltns projectName --template vue
 ```
 
 template presets include:
-- `basic (Vite + Scss)`
-- `vue (Vite + Vue + Typescipt)`
-- `angular (Angular16 starter)`
+- `TypeScript (TypeScript Starter)`
+- `Vue (Vite + Vue + Typescipt)`
+- `Angular (Angular17 starter)`
 
 ## License
 
