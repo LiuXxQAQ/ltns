@@ -9,12 +9,11 @@
     "cli"
   ],
   "bin": {
-    "ltns": "index.js"
+    "ltns": "bin/index.js"
   },
   "files": [
+    "bin/index.js",
     "dist",
-    "index.js",
-    "package.json",
     "template-*"
   ],
   "scripts": {

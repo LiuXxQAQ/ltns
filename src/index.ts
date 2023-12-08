@@ -8,42 +8,37 @@ import { hideBin } from 'yargs/helpers'
 import { cyan, green, yellow } from 'kolorist'
 import prompts from 'prompts'
 import { version } from '../package.json'
+import type { Template } from './types'
 
 const argv = yargs(hideBin(process.argv))
-  .positional('Folder', {
-    type: 'string',
-    describe: 'the mode how version range resolves, can be "default", "major", "minor", "latest" or "newest"',
-  })
+  .scriptName('ltns')
+  .usage('Usage: $0 <project name>[not requried] [options]')
   .options({
     template: {
       type: 'string',
       alias: 't',
-      choices: ['basic', 'vue', 'angular'] as const,
+      choices: ['ts', 'vue', 'angular'] as const,
       demandOption: false,
       description: 'Specify a template that you want.',
     },
   })
+  .example([
+    ['$0', 'Basic usage.'],
+    ['$0 MyProject', 'Specify a project name.'],
+    ['$0 MyProject -template vue', 'Specify a template.'],
+    ['$0 MyProject -t vue', 'Use alias.'],
+  ])
   .showHelpOnFail(false)
+  .help('help', 'Show a help message for ltns.')
   .alias('h', 'help')
-  .version('version', 'Outputs ltns version', version)
+  .version('version', 'Outputs ltns version.', version)
   .alias('v', 'version')
-  .help()
   .parseSync()
-
-console.log(argv)
-
-type ColorFunc = (str: string | number) => string
-
-interface Template {
-  name: string
-  detail: string
-  color: ColorFunc
-}
 
 const templates: Template[] = [
   {
-    name: 'basic',
-    detail: 'Basic (Vite, Scss)',
+    name: 'ts',
+    detail: 'TypeScirpt starter',
     color: green,
   },
   {

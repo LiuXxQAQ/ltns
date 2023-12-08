@@ -4,9 +4,6 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
-    "declaration": false,
-    "outDir": "dist",
-    "sourceMap": false,
     "esModuleInterop": true
   },
   "include": ["src", "build.config.ts"]

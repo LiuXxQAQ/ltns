@@ -1,4 +1,7 @@
-export interface CommonOptions {
-  template: string
-  version: string
+export type ColorFunc = (str: string | number) => string
+
+export interface Template {
+  name: string
+  detail: string
+  color: ColorFunc
 }
