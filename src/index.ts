@@ -3,14 +3,34 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import process from 'node:process'
-import minimist from 'minimist'
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
 import { cyan, green, yellow } from 'kolorist'
 import prompts from 'prompts'
+import { version } from '../package.json'
 
-const argv = minimist<{
-  t?: string
-  template?: string
-}>(process.argv.slice(2))
+const argv = yargs(hideBin(process.argv))
+  .positional('Folder', {
+    type: 'string',
+    describe: 'the mode how version range resolves, can be "default", "major", "minor", "latest" or "newest"',
+  })
+  .options({
+    template: {
+      type: 'string',
+      alias: 't',
+      choices: ['basic', 'vue', 'angular'] as const,
+      demandOption: false,
+      description: 'Specify a template that you want.',
+    },
+  })
+  .showHelpOnFail(false)
+  .alias('h', 'help')
+  .version('version', 'Outputs ltns version', version)
+  .alias('v', 'version')
+  .help()
+  .parseSync()
+
+console.log(argv)
 
 type ColorFunc = (str: string | number) => string
 
@@ -58,8 +78,8 @@ async function run() {
     process.exit(0)
   }
 
-  const argTargetDir = formatTargetDir(argv._[0])
-  const argTemplate = argv.t || argv.template
+  const argTargetDir = formatTargetDir(argv._[0] as string)
+  const argTemplate = argv.t as string || argv.template
 
   let targetDir = argTargetDir || defaultTargetDir
 

@@ -19,21 +19,23 @@
   ],
   "scripts": {
     "build": "unbuild",
+    "dev": "unbuild --stub",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp"
   },
+  "dependencies": {
+    "@types/yargs": "^17.0.32",
+    "kolorist": "^1.8.0",
+    "prompts": "^2.4.2",
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.3.4",
-    "@types/minimist": "^1.2.5",
     "@types/node": "^20.10.3",
     "@types/prompts": "^2.4.9",
     "bumpp": "^9.2.0",
     "eslint": "^8.55.0",
-    "kolorist": "^1.8.0",
-    "minimist": "^1.2.8",
-    "prompts": "^2.4.2",
-    "tslib": "^2.6.2",
     "typescript": "^5.3.2",
     "unbuild": "^1.2.1"
   }
