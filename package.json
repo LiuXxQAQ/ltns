@@ -1,7 +1,7 @@
 {
   "name": "ltns",
   "type": "module",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A personal CLI",
   "author": "Liu Xian",
   "license": "MIT",
