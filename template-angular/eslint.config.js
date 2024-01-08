@@ -5,10 +5,9 @@ export default antfu(
     ignores: [
       // eslint ignore globs here
     ],
-  },
-  {
     rules: {
       // overrides
     },
+    formatters: true
   },
 )
