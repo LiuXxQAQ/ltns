@@ -28,7 +28,7 @@ Examples:
 ```
 
 Template presets include:
-- `TypeScript (TypeScript Starter)`
+- `TypeScript (TypeScript Starter)` use Antfu [starter-ts](https://github.com/antfu/starter-ts)
 - `Vue (Vite + Vue + Typescipt)`
 - `Angular (Angular 17 starter)`
 
